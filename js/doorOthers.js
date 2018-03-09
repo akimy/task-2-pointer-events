@@ -183,13 +183,35 @@ function Door2(number, onUnlock) {
 
   // ==== Напишите свой код для открытия третей двери здесь ====
   const diamond = document.querySelector('.diamond__container');
+  const { x: secretX, y: secretY } = document.querySelector('.secret-place').getBoundingClientRect();
   diamond.firstElementChild.setAttribute('fill', 'hsla(0, 89%, 59%, 1)');
 
   function _onDiamondPointerUp(e) {
-    e.target.style.transform = 'translate(15px, 15px)';
+    const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
+    const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
+
+    if (distance < 15) {
+      e.target.style.transform = `translate(${secretX}, ${secretY})`;
+      sounds.play('Shutter');
+      setTimeout(() => {
+        this.unlock();
+      }, 1000);
+    } else {
+      e.target.style.transform = 'translate(15px, 15px)';
+      e.target.firstElementChild.setAttribute(
+        'fill',
+        'hsla(0, 89%, 59%, 1)',
+      );
+    }
   }
 
   function _onDiamondPointerMove(e) {
+    const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
+    const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
+    e.target.firstElementChild.setAttribute(
+      'fill',
+      `hsla(${120 - Math.min(distance, 120)}, 89%, 59%, 1)`,
+    );
     const diffX = this[`startX${e.pointerId}`] - e.pageX;
     const diffY = this[`startY${e.pointerId}`] - e.pageY;
     e.target.style.transform = `translate(${15 - diffX}px, ${15 - diffY}px)`;

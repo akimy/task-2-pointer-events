@@ -299,3 +299,14 @@ body {
 .diamond__edge {
     pointer-events: none;
 }
+
+.secret-place {
+    display: block;
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    visibility: hidden;
+    left: 40.4%;
+    top: 32%;
+    border-radius: 50%;
+}
