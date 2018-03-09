@@ -64,6 +64,9 @@ function Door1(number, onUnlock) {
 
   // ==== Напишите свой код для открытия второй двери здесь ====
   function _onLeftShutterPointerUp(e) {
+    /* If shutter does't closed then (given the location of this)
+    return to initial coords or close shutter.
+    */
     if (!e.target.locked) {
       const xCoord = -e.target.style.transform.match(/\d+/g)[0];
       if (xCoord > -90) {
@@ -75,6 +78,8 @@ function Door1(number, onUnlock) {
       }
     }
     e.target.releasePointerCapture(e.pointerId);
+
+    // Time Out for last shutter visualisation (get last animation & sound)
     setTimeout(() => {
       checkCondition.apply(this);
     }, 200);
@@ -107,8 +112,9 @@ function Door1(number, onUnlock) {
     e.target.setPointerCapture(e.pointerId);
   }
 
+  // We take in mind the boundary conditions && directions
   function _onLeftShutterPointerMove(e) {
-    if (!e.target.locked && e.target.style.transform.match(/\d+/g)[0] < 110) {
+    if (!e.target.locked) {
       const diff = this[`start${e.pointerId}`] - e.pageX;
       if (diff > 0) {
         e.target.style.transform = `translateX(${-25 - diff}px)`;
@@ -117,7 +123,7 @@ function Door1(number, onUnlock) {
   }
 
   function _onRightShutterPointerMove(e) {
-    if (!e.target.locked && e.target.style.transform.match(/\d+/g)[0] < 110) {
+    if (!e.target.locked) {
       const diff = this[`start${e.pointerId}`] - e.pageX;
       if (diff < 0) {
         e.target.style.transform = `translateX(${25 - diff}px)`;
@@ -128,11 +134,13 @@ function Door1(number, onUnlock) {
   const leftShutters = [
     this.popup.querySelector('.door__shutter_1'),
     this.popup.querySelector('.door__shutter_3'),
+    this.popup.querySelector('.door__shutter_5'),
   ];
 
   const rightShutters = [
     this.popup.querySelector('.door__shutter_2'),
     this.popup.querySelector('.door__shutter_4'),
+    this.popup.querySelector('.door__shutter_6'),
   ];
 
   leftShutters.forEach((shutter) => {

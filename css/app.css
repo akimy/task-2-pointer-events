@@ -163,6 +163,27 @@ body {
     background-size: contain;
 }
 
+.brief {
+    position: absolute;
+    top: 50px;
+    padding: 10px;
+    background-color: #280f0199;
+}
+
+.brief__label {
+    color: white;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.brief__description {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 22px;
+}
+
 .door-riddle {
     display: flex;
     align-items: center;
@@ -200,8 +221,8 @@ body {
 
 .door__shutter-container {
     display: flex;
-    margin-bottom: 50px;
-    margin-top: 80px;
+    margin-bottom: 45px;
+    margin-top: 50px;
 }
 
 .door__shutter {
@@ -212,10 +233,10 @@ body {
     border: 1px solid #796666;
 }
 
-.door__shutter_1, .door__shutter_3 {
+.door__shutter_1, .door__shutter_3, .door__shutter_5 {
     border-radius: 5px 0 0 5px;
 }
 
-.door__shutter_2, .door__shutter_4 {
+.door__shutter_2, .door__shutter_4, .door__shutter_6 {
     border-radius: 0 5px 5px 0;
 }

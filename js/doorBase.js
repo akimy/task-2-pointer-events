@@ -55,11 +55,13 @@ DoorBase.prototype = {
      * дверь считается открытой
      */
   unlock() {
-    this.door.classList.remove('door_locked');
-    this.isLocked = false;
-    this.closePopup();
-    this.onUnclockCallback();
-    this.showCongratulations();
+    if (this.isLocked) {
+      this.door.classList.remove('door_locked');
+      this.isLocked = false;
+      this.closePopup();
+      this.onUnclockCallback();
+      this.showCongratulations();
+    }
   },
   showCongratulations() {
     alert(`Дверь ${pluralMessage(this.number)} открыта!`);
