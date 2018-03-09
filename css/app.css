@@ -177,10 +177,45 @@ body {
     background-color: #583319;
     border: 1px solid #F3E9E0;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
-
+    touch-action: manipulation;
     transition: background-color .3s;
 }
 
 .door-riddle__button_pressed {
     background-color: #F3E5D9;
+}
+
+.door__frame {
+    width: 40%;
+    position: absolute;
+    height: 67%;
+    left: 30%;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    border-left: 3px solid darkred;
+    border-right: 3px solid darkred;
+    box-shadow: 0px 9px 15px orangered;
+}
+
+.door__shutter-container {
+    display: flex;
+    margin-bottom: 50px;
+    margin-top: 80px;
+}
+
+.door__shutter {
+    display: block;
+    width: 100px;
+    height: 32px;
+    background: url('../img/wood__pattern.jpg');
+    border: 1px solid #796666;
+}
+
+.door__shutter_1, .door__shutter_3 {
+    border-radius: 5px 0 0 5px;
+}
+
+.door__shutter_2, .door__shutter_4 {
+    border-radius: 0 5px 5px 0;
 }

@@ -8,7 +8,7 @@ function pluralMessage(number) {
   switch (Number(number)) {
     case 0: return 'на первый этаж';
     case 1: return 'на второй этаж';
-    case 2: return 'на третий этаж';
+    case 2: return 'к сундуку';
     default: return 'в глубины';
   }
 }

@@ -10,6 +10,11 @@ function App(el) {
     new Door2(2, onUnlock),
     new Box(3, onUnlock),
   ];
+  for (let i = 0; i < doors.length; i++) {
+    // убрать после отладки
+    doors[i].enable();
+    // энд
+  }
 
   this.doors = doors;
 
@@ -18,6 +23,7 @@ function App(el) {
      * Тут даем возможность открыть следующие двери
      */
   function onUnlock() {
+    sounds.play('DoorOpened');
     let previousUnlocked;
 
     // Даем открыть следующую дверь

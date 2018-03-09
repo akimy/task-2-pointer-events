@@ -27,9 +27,19 @@
                 </div>
             </div>
         </div>
-        <div class="popup popup_hidden popup_level_1">
+        <div class="popup popup_hidden popup_level_1" touch-action="none">
             <div class="popup__content popup__content_level_1">
                 <div class="popup__close">╳</div>
+                    <div class="door__frame">
+                        <div class="door__shutter-container">
+                            <div class="door__shutter door__shutter_1" style="transform: translateX(-25px);"></div>
+                            <div class="door__shutter door__shutter_2" style="transform: translateX(25px);"></div>
+                        </div>
+                        <div class="door__shutter-container">
+                            <div class="door__shutter door__shutter_3" style="transform: translateX(-25px);"></div>
+                            <div class="door__shutter door__shutter_4" style="transform: translateX(25px);"></div>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="popup popup_hidden popup_level_2">
@@ -47,12 +57,12 @@
     <script src="js/sounds.js"></script>
     <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
     <script src="js/doorBase.js"></script>
-    <script src="js/doorOthers.js"></script>
+    <script src="js/doorOthers.js?v=1"></script>
     <script src="js/app.js"></script>
-    <audio class="ost__main-theme" src="./sounds/theme.wav" type="audio/wav" loop/>
-    <audio class="ost__click" src="./sounds/click.wav" type="audio/wav" />
-    <audio class="ost__shutter" src="./sounds/shutter.wav" type="audio/wav"/>
-    <audio class="ost__door-opened" src="./sounds/opened.wav" type="audio/wav"/>
-    <audio class="ost__success" src="./sounds/success.wav" type="audio/wav"/>
+    <audio class="ost__main-theme" src="./sounds/theme.ogg" type="audio/ogg" autoplay loop/>
+    <audio class="ost__click" src="./sounds/click.ogg" type="audio/ogg"/>
+    <audio class="ost__shutter" src="./sounds/shutter.ogg" type="audio/ogg"/>
+    <audio class="ost__door-opened" src="./sounds/opened.ogg" type="audio/ogg"/>
+    <audio class="ost__success" src="./sounds/success.ogg" type="audio/ogg"/>
 </body>
 </html>

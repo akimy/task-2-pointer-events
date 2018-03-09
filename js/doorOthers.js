@@ -43,8 +43,6 @@ function Door0(number, onUnlock) {
 
     // Если все три кнопки зажаты одновременно, то откроем эту дверь
     if (isOpened) {
-      sounds.play('Clink');
-      sounds.play('DoorOpened');
       this.unlock();
     }
   }
@@ -65,11 +63,102 @@ function Door1(number, onUnlock) {
   DoorBase.apply(this, arguments);
 
   // ==== Напишите свой код для открытия второй двери здесь ====
-  // Для примера дверь откроется просто по клику на неё
-  this.popup.addEventListener('click', () => {
-    this.unlock();
+  function _onLeftShutterPointerUp(e) {
+    if (!e.target.locked) {
+      const xCoord = -e.target.style.transform.match(/\d+/g)[0];
+      if (xCoord > -90) {
+        e.target.style.transform = 'translateX(-25px)';
+      } else {
+        e.target.style.transform = 'translateX(-90px)';
+        sounds.play('Clink');
+        e.target.locked = true;
+      }
+    }
+    e.target.releasePointerCapture(e.pointerId);
+    setTimeout(() => {
+      checkCondition.apply(this);
+    }, 200);
+  }
+
+  function _onRightShutterPointerUp(e) {
+    if (!e.target.locked) {
+      const xCoord = e.target.style.transform.match(/\d+/g)[0];
+      if (xCoord < 90) {
+        e.target.style.transform = 'translateX(25px)';
+      } else {
+        e.target.style.transform = 'translateX(90px)';
+        sounds.play('Clink');
+        e.target.locked = true;
+      }
+    }
+    e.target.releasePointerCapture(e.pointerId);
+    setTimeout(() => {
+      checkCondition.apply(this);
+    }, 200);
+  }
+
+  function _onLeftShutterPointerDown(e) {
+    this[`start${e.pointerId}`] = e.pageX;
+    e.target.setPointerCapture(e.pointerId);
+  }
+
+  function _onRightShutterPointerDown(e) {
+    this[`start${e.pointerId}`] = e.pageX;
+    e.target.setPointerCapture(e.pointerId);
+  }
+
+  function _onLeftShutterPointerMove(e) {
+    if (!e.target.locked && e.target.style.transform.match(/\d+/g)[0] < 110) {
+      const diff = this[`start${e.pointerId}`] - e.pageX;
+      if (diff > 0) {
+        e.target.style.transform = `translateX(${-25 - diff}px)`;
+      }
+    }
+  }
+
+  function _onRightShutterPointerMove(e) {
+    if (!e.target.locked && e.target.style.transform.match(/\d+/g)[0] < 110) {
+      const diff = this[`start${e.pointerId}`] - e.pageX;
+      if (diff < 0) {
+        e.target.style.transform = `translateX(${25 - diff}px)`;
+      }
+    }
+  }
+
+  const leftShutters = [
+    this.popup.querySelector('.door__shutter_1'),
+    this.popup.querySelector('.door__shutter_3'),
+  ];
+
+  const rightShutters = [
+    this.popup.querySelector('.door__shutter_2'),
+    this.popup.querySelector('.door__shutter_4'),
+  ];
+
+  leftShutters.forEach((shutter) => {
+    shutter.addEventListener('pointerdown', _onLeftShutterPointerDown.bind(this));
+    shutter.addEventListener('pointerup', _onLeftShutterPointerUp.bind(this));
+    shutter.addEventListener('pointermove', _onLeftShutterPointerMove.bind(this));
   });
-  // ==== END Напишите свой код для открытия второй двери здесь ====
+
+  rightShutters.forEach((shutter) => {
+    shutter.addEventListener('pointerdown', _onRightShutterPointerDown.bind(this));
+    shutter.addEventListener('pointerup', _onRightShutterPointerUp.bind(this));
+    shutter.addEventListener('pointermove', _onRightShutterPointerMove.bind(this));
+  });
+
+  function checkCondition() {
+    let isOpened = true;
+    leftShutters.concat(rightShutters).forEach((el) => {
+      if (!el.locked) {
+        isOpened = false;
+      }
+    });
+
+    if (isOpened) {
+      this.unlock();
+    }
+  }
 }
 Door1.prototype = Object.create(DoorBase.prototype);
 Door1.prototype.constructor = DoorBase;
