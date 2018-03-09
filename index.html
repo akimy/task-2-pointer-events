@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <!-- Thanks for assets to Kenny at http://kenney.nl/assets/platformer-pack-redux -->
     <div class="app container">
         <div class="level level_0"><div class="door door_locked door_level_0"></div></div>
         <div class="level level_1"><div class="door door_locked door_disabled door_level_1"></div></div>
@@ -44,10 +43,16 @@
             </div>
         </div>
     </div>
-
+    
+    <script src="js/sounds.js"></script>
     <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
     <script src="js/doorBase.js"></script>
     <script src="js/doorOthers.js"></script>
     <script src="js/app.js"></script>
+    <audio class="ost__main-theme" src="./sounds/theme.wav" type="audio/wav" loop/>
+    <audio class="ost__click" src="./sounds/click.wav" type="audio/wav" />
+    <audio class="ost__shutter" src="./sounds/shutter.wav" type="audio/wav"/>
+    <audio class="ost__door-opened" src="./sounds/opened.wav" type="audio/wav"/>
+    <audio class="ost__success" src="./sounds/success.wav" type="audio/wav"/>
 </body>
 </html>

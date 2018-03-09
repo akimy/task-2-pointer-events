@@ -9,6 +9,7 @@ function Door0(number, onUnlock) {
   DoorBase.apply(this, arguments);
 
   function _onButtonPointerDown(e) {
+    sounds.play('Click');
     e.target.classList.add('door-riddle__button_pressed');
     checkCondition.apply(this);
   }
@@ -42,6 +43,8 @@ function Door0(number, onUnlock) {
 
     // Если все три кнопки зажаты одновременно, то откроем эту дверь
     if (isOpened) {
+      sounds.play('Clink');
+      sounds.play('DoorOpened');
       this.unlock();
     }
   }
