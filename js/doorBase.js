@@ -64,6 +64,15 @@ DoorBase.prototype = {
     }
   },
   showCongratulations() {
-    alert(`Дверь ${pluralMessage(this.number)} открыта!`);
+    const wrapperNode = document.querySelector('.container');
+    const template = document.getElementById('template');
+    const clone = template.content.cloneNode(true);
+    const labelNode = clone.querySelector('.brief__label');
+    labelNode.innerHTML = `Дверь ${pluralMessage(this.number)} открыта!`;
+    clone.querySelector('.brief__template').addEventListener('pointerdown', (e) => {
+      e.target.remove();
+    });
+    wrapperNode.appendChild(clone);
+    // alert(`Дверь ${pluralMessage(this.number)} открыта!`);
   },
 };

@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    <template id="template">
+        <div class="brief brief__template">
+            <h4 class="brief__label"></h4>
+            <span class="brief__arrow">⤷</span>
+        </div>
+    </template>
     <div class="app container">
         <div class="level level_0"><div class="door door_locked door_level_0"></div></div>
         <div class="level level_1"><div class="door door_locked door_disabled door_level_1"></div></div>
@@ -20,12 +26,13 @@
         <div class="popup popup_hidden popup_level_0">
             <div class="popup__content popup__content_level_0" touch-action="none">
                 <div class="popup__close">╳</div>
-                <div class="brief">
+                <div class="brief brief__template">
                     <h4 class="brief__label">Войди, если осмелишься!</h4>
                     <span class="brief__description">
                         Вы находитесь на входе в подземелье, небольшой ветерок гуляет рядом с дверью.
                          Используя свое зоркое восприятие вы обнаруживаете на двери три выемки. Интересно, зачем они здесь?
                     </span>
+                    <span class="brief__arrow">⤷</span>
                 </div>
                 <div class="door-riddle">
                     <div class="door-riddle__button door-riddle__button_0"></div>
@@ -37,7 +44,7 @@
         <div class="popup popup_hidden popup_level_1" touch-action="none">
             <div class="popup__content popup__content_level_1">
                 <div class="popup__close">╳</div>
-                <div class="brief">
+                <div class="brief brief__template">
                     <h4 class="brief__label">На шаг ближе к цели</h4>
                     <span class="brief__description">
                         Вторая дверь встречает вас с тремя старинными деревянными засовами. Ха!
@@ -46,16 +53,24 @@
                 </div>
                     <div class="door__frame">
                         <div class="door__shutter-container">
-                            <div class="door__shutter door__shutter_1" style="transform: translateX(-25px);"></div>
-                            <div class="door__shutter door__shutter_2" style="transform: translateX(25px);"></div>
+                            <div class="door__shutter door__shutter_1" style="transform: translateX(-25px);">
+                            </div>
+                            <span class="door__latch door__latch_left"></span>
+                            <div class="door__shutter door__shutter_2" style="transform: translateX(25px);">
+                            </div>
+                            <span class="door__latch door__latch_right"></span>
                         </div>
                         <div class="door__shutter-container">
                             <div class="door__shutter door__shutter_3" style="transform: translateX(-25px);"></div>
+                            <span class="door__latch door__latch_left"></span>
                             <div class="door__shutter door__shutter_4" style="transform: translateX(25px);"></div>
+                            <span class="door__latch door__latch_right"></span>
                         </div>
                         <div class="door__shutter-container">
                             <div class="door__shutter door__shutter_5" style="transform: translateX(-25px);"></div>
+                            <span class="door__latch door__latch_left"></span>
                             <div class="door__shutter door__shutter_6" style="transform: translateX(25px);"></div>
+                            <span class="door__latch door__latch_right"></span>
                         </div>
                     </div>
             </div>

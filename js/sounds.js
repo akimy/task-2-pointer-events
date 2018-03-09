@@ -22,6 +22,12 @@ class Sounds {
 const sounds = new Sounds();
 
 document.addEventListener('DOMContentLoaded', () => {
+  Array.prototype.forEach.call(document.querySelectorAll('.brief__template'), (el) => {
+    el.addEventListener('pointerdown', (e) => {
+      e.target.remove();
+    });
+  });
+
   document.querySelector('.ost__main-theme').volume = '0.4';
   sounds.setTrack(document.querySelector('.ost__click'), 'Click');
   sounds.setTrack(document.querySelector('.ost__shutter'), 'Shutter');
