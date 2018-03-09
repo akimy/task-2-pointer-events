@@ -4,6 +4,15 @@
  * @param {Number} number
  * @param {Function} onUnlock
  */
+function pluralMessage(number) {
+  switch (Number(number)) {
+    case 0: return 'на первый этаж';
+    case 1: return 'на второй этаж';
+    case 3: return 'на третий этаж';
+    default: return 'в глубины';
+  }
+}
+
 function DoorBase(number, onUnlock) {
   function onDoorClick() {
     if (!this.isDisabled) {
@@ -53,6 +62,6 @@ DoorBase.prototype = {
     this.showCongratulations();
   },
   showCongratulations() {
-    alert(`Дверь ${this.number} открыта!`);
+    alert(`Дверь ${pluralMessage(this.number)} открыта!`);
   },
 };
