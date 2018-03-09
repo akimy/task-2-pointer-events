@@ -73,6 +73,5 @@ DoorBase.prototype = {
       e.target.remove();
     });
     wrapperNode.appendChild(clone);
-    // alert(`Дверь ${pluralMessage(this.number)} открыта!`);
   },
 };
