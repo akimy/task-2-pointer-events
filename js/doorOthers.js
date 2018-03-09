@@ -97,6 +97,7 @@ function Door1(number, onUnlock) {
       }
     }
     e.target.releasePointerCapture(e.pointerId);
+
     setTimeout(() => {
       checkCondition.apply(this);
     }, 200);
@@ -181,10 +182,28 @@ function Door2(number, onUnlock) {
   DoorBase.apply(this, arguments);
 
   // ==== Напишите свой код для открытия третей двери здесь ====
-  // Для примера дверь откроется просто по клику на неё
-  this.popup.addEventListener('click', () => {
-    this.unlock();
-  });
+  const diamond = document.querySelector('.diamond__container');
+  diamond.firstElementChild.setAttribute('fill', 'hsla(0, 89%, 59%, 1)');
+
+  function _onDiamondPointerUp(e) {
+    e.target.style.transform = 'translate(15px, 15px)';
+  }
+
+  function _onDiamondPointerMove(e) {
+    const diffX = this[`startX${e.pointerId}`] - e.pageX;
+    const diffY = this[`startY${e.pointerId}`] - e.pageY;
+    e.target.style.transform = `translate(${15 - diffX}px, ${15 - diffY}px)`;
+  }
+
+  function _onDiamondPointerDown(e) {
+    this[`startX${e.pointerId}`] = e.pageX;
+    this[`startY${e.pointerId}`] = e.pageY;
+    e.target.setPointerCapture(e.pointerId);
+  }
+
+  diamond.addEventListener('pointerdown', _onDiamondPointerDown.bind(this));
+  diamond.addEventListener('pointerup', _onDiamondPointerUp.bind(this));
+  diamond.addEventListener('pointermove', _onDiamondPointerMove.bind(this));
   // ==== END Напишите свой код для открытия третей двери здесь ====
 }
 Door2.prototype = Object.create(DoorBase.prototype);

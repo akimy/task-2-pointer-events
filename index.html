@@ -13,9 +13,10 @@
     <template id="template">
         <div class="brief brief__template">
             <h4 class="brief__label"></h4>
-            <span class="brief__arrow">⤷</span>
+            <img class="brief__arrow" src="./img/arrow.svg" alt="">
         </div>
     </template>
+
     <div class="app container">
         <div class="level level_0"><div class="door door_locked door_level_0"></div></div>
         <div class="level level_1"><div class="door door_locked door_disabled door_level_1"></div></div>
@@ -29,10 +30,10 @@
                 <div class="brief brief__template">
                     <h4 class="brief__label">Войди, если осмелишься!</h4>
                     <span class="brief__description">
-                        Вы находитесь на входе в подземелье, небольшой ветерок гуляет рядом с дверью.
+                        Вы находитесь на входе в подземелье. Порыв внезапного ветра сдувает листья с подступов к двери.
                          Используя свое зоркое восприятие вы обнаруживаете на двери три выемки. Интересно, зачем они здесь?
                     </span>
-                    <span class="brief__arrow">⤷</span>
+                    <img class="brief__arrow" src="./img/arrow.svg" alt="">
                 </div>
                 <div class="door-riddle">
                     <div class="door-riddle__button door-riddle__button_0"></div>
@@ -47,37 +48,52 @@
                 <div class="brief brief__template">
                     <h4 class="brief__label">На шаг ближе к цели</h4>
                     <span class="brief__description">
-                        Вторая дверь встречает вас с тремя старинными деревянными засовами. Ха!
-                        Когда пара засовов останавливала путешественников? Да вы можете открыть ее одним жестом, если постараетесь.
+                        Вторая дверь встречает вас шестью старыми деревянными задвижками. Ха!
+                        Когда препятствие из нескольких засовов останавливало путешественников? Да вы можете открыть их все одним жестом, если постараетесь.
                     </span>
+                    <img class="brief__arrow" src="./img/arrow.svg" alt="">
                 </div>
-                    <div class="door__frame">
-                        <div class="door__shutter-container">
-                            <div class="door__shutter door__shutter_1" style="transform: translateX(-25px);">
-                            </div>
-                            <span class="door__latch door__latch_left"></span>
-                            <div class="door__shutter door__shutter_2" style="transform: translateX(25px);">
-                            </div>
-                            <span class="door__latch door__latch_right"></span>
+                <div class="door__frame">
+                    <div class="door__shutter-container">
+                        <div class="door__shutter door__shutter_1" style="transform: translateX(-25px);">
                         </div>
-                        <div class="door__shutter-container">
-                            <div class="door__shutter door__shutter_3" style="transform: translateX(-25px);"></div>
-                            <span class="door__latch door__latch_left"></span>
-                            <div class="door__shutter door__shutter_4" style="transform: translateX(25px);"></div>
-                            <span class="door__latch door__latch_right"></span>
+                        <span class="door__latch door__latch_left"></span>
+                        <div class="door__shutter door__shutter_2" style="transform: translateX(25px);">
                         </div>
-                        <div class="door__shutter-container">
-                            <div class="door__shutter door__shutter_5" style="transform: translateX(-25px);"></div>
-                            <span class="door__latch door__latch_left"></span>
-                            <div class="door__shutter door__shutter_6" style="transform: translateX(25px);"></div>
-                            <span class="door__latch door__latch_right"></span>
-                        </div>
+                        <span class="door__latch door__latch_right"></span>
                     </div>
+                    <div class="door__shutter-container">
+                        <div class="door__shutter door__shutter_3" style="transform: translateX(-25px);"></div>
+                        <span class="door__latch door__latch_left"></span>
+                        <div class="door__shutter door__shutter_4" style="transform: translateX(25px);"></div>
+                        <span class="door__latch door__latch_right"></span>
+                    </div>
+                    <div class="door__shutter-container">
+                        <div class="door__shutter door__shutter_5" style="transform: translateX(-25px);"></div>
+                        <span class="door__latch door__latch_left"></span>
+                        <div class="door__shutter door__shutter_6" style="transform: translateX(25px);"></div>
+                        <span class="door__latch door__latch_right"></span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="popup popup_hidden popup_level_2">
+        <div class="popup popup_hidden popup_level_2" touch-action="none">
             <div class="popup__content popup__content_level_2">
                 <div class="popup__close">╳</div>
+                <div class="brief brief__template">
+                    <h4 class="brief__label">Приключения продолжаются</h4>
+                    <span class="brief__description">
+                        На пути к третьей двери вы спотыкаетесь обо что-то и падаете. Ругнувшись и отряхнув пыльный плащ, вы осматриваете виновника трагедии.
+                        Это оказался драгоценный алмаз. Вот это находка! Возможно он поможет вам открыть третью дверь. Вот только куда его поместить?
+                    </span>
+                    <img class="brief__arrow" src="./img/arrow.svg" alt="">
+                </div>
+                    <div class="diamond__container" style="transform: translate(15px, 15px)">
+                        <svg class="door__diamond" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+                            <path class="diamond__edge"  d="M690.6,309.2L826.7,37H527.2L690.6,309.2z"/><path class="diamond__edge"  d="M853.9,37.2L717.8,309.4H990L853.9,37.2z"/><path class="diamond__edge"  d="M146.1,37.2L10,309.4h272.2L146.1,37.2z"/><path class="diamond__edge"  d="M472.8,963L282.2,336.9H10L472.8,963z"/><path class="diamond__edge"  d="M527.2,963l190.6-626.1H990L527.2,963z"/><path class="diamond__edge"  d="M500,963L309.4,336.9h381.1L500,963z"/><path class="diamond__edge"  d="M500,37.2L336.7,309.4h326.7L500,37.2z"/><path class="diamond__edge"  d="M309.4,309.2L472.8,37H173.3L309.4,309.2z"/>
+                        </svg>
+                    </div>
+                <div class="secret-place"></div>
             </div>
         </div>
         <div class="popup popup_hidden popup_level_3">

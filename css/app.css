@@ -179,12 +179,10 @@ body {
 }
 
 .brief__arrow {
-    pointer-events: none;
+    width: 70px;
+    height: 70px;
     align-self: flex-end;
-    margin: 25px 30px;
-    font-size: 50px;
-    font-weight: bold;
-    color: #333;
+    margin-right: 20px;
 }
 
 .brief__label {
@@ -282,4 +280,22 @@ body {
 
 .door__shutter_2, .door__shutter_4, .door__shutter_6 {
     border-radius: 0 5px 5px 0;
+}
+
+.door__diamond {
+    width: 65px;
+    height: 65px;
+    pointer-events: none;
+}
+
+.diamond__container {
+    touch-action: manipulation;
+    width: 65px;
+    height: 65px;
+    display: block;
+    position: absolute;
+}
+
+.diamond__edge {
+    pointer-events: none;
 }
