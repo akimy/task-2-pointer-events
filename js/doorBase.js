@@ -55,6 +55,7 @@ DoorBase.prototype = {
       this.showCongratulations();
     }
   },
+
   showCongratulations() {
     const element = document.querySelector(`.brief__template_${this.number}`);
     element.style.display = 'flex';

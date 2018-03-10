@@ -186,10 +186,15 @@ function Door2(number, onUnlock) {
   const { x: secretX, y: secretY } = document.querySelector('.secret-place').getBoundingClientRect();
   diamond.firstElementChild.setAttribute('fill', 'hsla(0, 89%, 59%, 1)');
 
+  function getDistance(x1, y1, x2, y2) {
+    return Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+  }
+
   function _onDiamondPointerUp(e) {
     const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
-    const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
+    const distance = getDistance(secretX, secretY, diamondX, diamondY);
 
+    // If diamond is close enought to secret
     if (distance < 25) {
       e.target.style.transform = `translate(${secretX}, ${secretY})`;
       sounds.play('Shutter');
@@ -207,7 +212,7 @@ function Door2(number, onUnlock) {
 
   function _onDiamondPointerMove(e) {
     const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
-    const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
+    const distance = getDistance(secretX, secretY, diamondX, diamondY);
     e.target.firstElementChild.setAttribute(
       'fill',
       `hsla(${120 - Math.min(distance, 120)}, 89%, 59%, 1)`,
@@ -250,12 +255,12 @@ function Box(number, onUnlock) {
     }());
   }
 
-  function getRotate(el) {
+  function getAngle(el) {
     return Number(el.style.transform.match(/\d+/g));
   }
 
-  function setRotate(el, diff) {
-    const current = getRotate(el);
+  function rotateColumn(el, diff) {
+    const current = getAngle(el);
     let next = current + diff;
     switch (next) {
       case -90: next = 270;
@@ -265,7 +270,6 @@ function Box(number, onUnlock) {
       case 450: next = 90;
         break;
       case 360: next = 0;
-        break;
     }
 
     el.style.transform = `rotate(${next}deg)`;
@@ -276,36 +280,36 @@ function Box(number, onUnlock) {
   const rightPlate = this.popup.querySelector('.plate_right');
   const [fire, water, earth, air] = this.popup.querySelectorAll('.treashure__column');
 
-  const swipeListener = new Hammer.Manager(this.popup);
-  swipeListener.add(new Hammer.Swipe());
+  const stage = new Hammer.Manager(this.popup);
+  stage.add(new Hammer.Swipe());
 
-  swipeListener.on('swipeup', () => {
+  stage.on('swipeup', () => {
     playEffects(topPlate, 'Clink');
-    setRotate(fire, 90);
-    setRotate(water, -90);
-    setRotate(air, 180);
+    rotateColumn(fire, 90);
+    rotateColumn(water, -90);
+    rotateColumn(air, 180);
     checkCondition.apply(this);
   });
 
-  swipeListener.on('swipeleft', () => {
+  stage.on('swipeleft', () => {
     playEffects(leftPlate, 'Click');
-    setRotate(earth, 90);
-    setRotate(water, 180);
-    setRotate(air, -90);
+    rotateColumn(earth, 90);
+    rotateColumn(water, 180);
+    rotateColumn(air, -90);
     checkCondition.apply(this);
   });
 
-  swipeListener.on('swiperight', () => {
+  stage.on('swiperight', () => {
     playEffects(rightPlate, 'Click');
-    setRotate(fire, -180);
-    setRotate(water, 90);
-    setRotate(earth, -90);
+    rotateColumn(fire, -180);
+    rotateColumn(water, 90);
+    rotateColumn(earth, -90);
     checkCondition.apply(this);
   });
 
   function checkCondition() {
-    if (getRotate(fire) === 0 && getRotate(water) === 90 &&
-    getRotate(earth) === 180 && getRotate(air) === 270) {
+    if (getAngle(fire) === 0 && getAngle(water) === 90 &&
+    getAngle(earth) === 180 && getAngle(air) === 270) {
       this.showCongratulations();
     }
   }
