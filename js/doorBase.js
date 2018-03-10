@@ -4,14 +4,6 @@
  * @param {Number} number
  * @param {Function} onUnlock
  */
-function pluralMessage(number) {
-  switch (Number(number)) {
-    case 0: return 'на первый этаж';
-    case 1: return 'на второй этаж';
-    case 2: return 'к сундуку';
-    default: return 'в глубины';
-  }
-}
 
 function DoorBase(number, onUnlock) {
   function onDoorClick() {
@@ -64,17 +56,10 @@ DoorBase.prototype = {
     }
   },
   showCongratulations() {
-    const wrapperNode = document.querySelector('.container');
-    const template = document.getElementById('template');
-    const clone = template.content.cloneNode(true);
-    const labelNode = clone.querySelector('.brief__label');
-    labelNode.innerHTML = `Дверь ${pluralMessage(this.number)} открыта!`;
-    wrapperNode.appendChild(clone);
-
-    Array.prototype.forEach.call(document.querySelectorAll('.brief__template'), (el) => {
-      el.addEventListener('pointerdown', (e) => {
-        e.target.remove();
-      });
+    const element = document.querySelector(`.brief__template_${this.number}`);
+    element.style.display = 'flex';
+    element.addEventListener('pointerdown', (event) => {
+      event.target.remove();
     });
   },
 };

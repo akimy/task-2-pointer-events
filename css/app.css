@@ -179,6 +179,10 @@ body {
     background: url('../img/pergament.jpg');
 }
 
+.brief__template_0, .brief__template_1, .brief__template_2 {
+    display: none;
+}
+
 .brief__arrow {
     width: 70px;
     height: 70px;

@@ -315,7 +315,7 @@ function Box(number, onUnlock) {
   this.showCongratulations = () => {
     setTimeout(() => {
       document.querySelector('.finish__description').style.display = 'flex';
-    }, 2000);
+    }, 500);
   };
 }
 Box.prototype = Object.create(DoorBase.prototype);
