@@ -18,6 +18,16 @@
     </template>
 
     <div class="app container">
+        <div class="brief brief_final" onclick="location.reload()">
+            <h4 class="brief__label">Поздравляем!</h4>
+            <span class="brief__description">
+                Как только вы сфокусировали энергию колонн, со стороны сундука послышался легкий свист и щелчок.
+                 Сундук открыт. В нетерпении вы заглядываете внутрь. В сундуке находится книга с рунами на древнем языке.
+                  Стряхнув пыль с обложки вы вспомнили уроки из академии (выпускником которой вы являетесь с 2202 года)
+                   и прочли "The art of computer programming (Knuth donald)". Забытые знания старого мира. Не то - что вы ожидали от древнего подземелья. 
+                   Вздохнув, вы убираете книгу в свой походный рюкзак и выходите на поверхность. Еще одно препятствие позади. Нужно успеть вернуться в лагерь до наступления ночи.
+            </span>
+        </div>
         <div class="level level_0"><div class="door door_locked door_level_0"></div></div>
         <div class="level level_1"><div class="door door_locked door_disabled door_level_1"></div></div>
         <div class="level level_2"><div class="door door_locked door_disabled door_level_2"></div></div>
@@ -99,16 +109,48 @@
         <div class="popup popup_hidden popup_level_3">
             <div class="popup__content popup__content_level_3">
                 <div class="popup__close">╳</div>
+                <div class="brief brief__template">
+                    <h4 class="brief__label">Сундук!</h4>
+                    <span class="brief__description">
+                        Как только вы зашли внутрь дверь за вами закрылась. Назад пути нет. Вам открылась комната с четыремя колоннами и закрытым сундуком посередине. Вы чуствуете, что колонны источают энергию элементов. Возможно если энергию всех четырех элементов сфокусировать к сундуку это откроет его! 
+                        <br /><span class="brief__description_small">Для прохождения этого испытания вам необходимо будет использовать жест "Смахивание" (Swipe). Вверх, вниз и влево. Удачи!</span>
+                    </span>
+                    <img class="brief__arrow" src="./img/arrow.svg" alt="">
+                </div>
+                <div class="treashure__plate plate_left"></div>
+                <div class="treashure__plate plate_right"></div>
+                <div class="treashure__plate plate_top"></div>
+                <div class="treashure__arena">
+                    <img class="treashure__chest" src="./img/treashure-chest.png" alt="">
+                    <svg style="transform: rotate(90deg)" class="treashure__column column__fire">
+                        <line class="column__pipe" x1="60px" y1="60px" x2="110px" y2="110px"/>
+                        <circle class="column__base" cx="60px" cy="60px" r="18px" fill="#e84940" stroke-width="2px" stroke="dimgray"/>
+                    </svg>
+                    <svg style="transform: rotate(180deg)" class="treashure__column column__water">
+                        <line class="column__pipe" x1="60px" y1="60px" x2="110px" y2="110px"/>
+                        <circle class="column__base" cx="60px" cy="60px" r="18px" fill="#40d1e8" stroke-width="2px" stroke="dimgray"/>
+                    </svg>
+                    <svg style="transform: rotate(270deg)" class="treashure__column column__earth">
+                        <line class="column__pipe" x1="60px" y1="60px" x2="110px" y2="110px"/>
+                        <circle class="column__base" cx="60px" cy="60px" r="18px" fill="#4ee840" stroke-width="2px" stroke="dimgray"/>
+                    </svg>
+                    <svg style="transform: rotate(0)" class="treashure__column column__air">
+                        <line class="column__pipe" x1="60px" y1="60px" x2="110px" y2="110px"/>
+                        <circle class="column__base" cx="60px" cy="60px" r="18px" fill="#cdf2f0" stroke-width="2px" stroke="dimgray"/>
+                    </svg>
+                    <div class="treashure__help">Используйте жест "Свайп", влево, вверх и вправо для управления колоннами</div>
+                </div>
             </div>
         </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script src="js/sounds.js"></script>
     <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
     <script src="js/doorBase.js"></script>
     <script src="js/doorOthers.js?v=1"></script>
     <script src="js/app.js"></script>
-    <audio class="ost__main-theme" src="./sounds/theme.ogg" type="audio/ogg" autoplay loop/>
+    <audio class="ost__main-theme" src="./sounds/theme.ogg" type="audio/ogg" loop/>
     <audio class="ost__click" src="./sounds/click.ogg" type="audio/ogg"/>
     <audio class="ost__shutter" src="./sounds/shutter.ogg" type="audio/ogg"/>
     <audio class="ost__door-opened" src="./sounds/opened.ogg" type="audio/ogg"/>

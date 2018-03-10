@@ -159,8 +159,9 @@ body {
     /* Можно поставить какую-нибудь свою картинку двери на бек */
 }
 .popup__content_level_3 {
-    background-image: url(../img/door__box.png);
-    background-size: contain;
+    background: #424242;
+    background-size: 370px;
+    background-repeat: repeat;
 }
 
 .brief {
@@ -183,6 +184,7 @@ body {
     height: 70px;
     align-self: flex-end;
     margin-right: 20px;
+    pointer-events: none;
 }
 
 .brief__label {
@@ -200,6 +202,15 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 24px;
     padding: 0 10px;
+}
+
+.brief_final {
+    display: none;
+}
+
+.brief__description_small {
+    font-style: italic;
+    color: #636363;
 }
 
 .door-riddle {
@@ -309,4 +320,98 @@ body {
     left: 40.4%;
     top: 32%;
     border-radius: 50%;
+}
+
+.treashure__column {
+    pointer-events: none;
+    width: 120px;
+    height: 120px;
+    transition: 0.3s ease-in-out;
+}
+
+.treashure__arena {
+    pointer-events: none;
+    display: block;
+    border-radius: 5px;
+    height: 400px;
+    margin: 10px;
+    position: relative;
+    box-shadow: 5px 5px 50px #333;
+    background-image: url('../img/floor__texture.jpg');
+}
+
+.column__pipe {
+    stroke-width: 5px;
+    stroke: white;
+}
+
+.column__base {
+    stroke-dasharray: 5 3 10 1;
+}
+
+.column__fire {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.column__water {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.column__earth {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.column__air {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.treashure__chest {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 80px;
+    pointer-events: none;
+    height: 80px;
+}
+
+.treashure__plate {
+    position: absolute;
+    opacity: 0;
+}
+
+.treashure__help {
+    position: absolute;
+    bottom: -50px;
+    color: lightgray;
+    font-family: Arial;
+    font-size: 15px;
+}
+
+.plate_top {
+    top: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to top, transparent, #08ec99);
+}
+
+.plate_right {
+    right: 0;
+    height: 100%;
+    width: 20px;
+    background: linear-gradient(to right, transparent, #08ec99);
+}
+
+.plate_left {
+    left: 0;
+    height: 100%;
+    width: 20px;
+    background: linear-gradient(to left, transparent, #08ec99);
 }

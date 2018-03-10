@@ -241,15 +241,79 @@ Door2.prototype.constructor = DoorBase;
 function Box(number, onUnlock) {
   DoorBase.apply(this, arguments);
 
-  // ==== Напишите свой код для открытия сундука здесь ====
-  // Для примера сундук откроется просто по клику на него
-  this.popup.addEventListener('click', () => {
-    this.unlock();
+  function playEffects(DOMelement, sfx) {
+    sounds.play(sfx);
+    const s = DOMelement.style;
+    s.opacity = 1;
+    (function fade() {
+      (s.opacity -= 0.05) < 0 ? s.opacity = 0 : setTimeout(fade, 50);
+    }());
+  }
+
+  function getRotate(el) {
+    return Number(el.style.transform.match(/\d+/g));
+  }
+
+  function setRotate(el, diff) {
+    const current = getRotate(el);
+    let next = current + diff;
+    switch (next) {
+      case -90: next = 270;
+        break;
+      case -180: next = 180;
+        break;
+      case 450: next = 90;
+        break;
+      case 360: next = 0;
+        break;
+    }
+
+    el.style.transform = `rotate(${next}deg)`;
+  }
+
+  const topPlate = this.popup.querySelector('.plate_top');
+  const leftPlate = this.popup.querySelector('.plate_left');
+  const rightPlate = this.popup.querySelector('.plate_right');
+  const [fire, water, earth, air] = this.popup.querySelectorAll('.treashure__column');
+
+  const swipeListener = new Hammer.Manager(this.popup);
+  swipeListener.add(new Hammer.Swipe());
+
+  swipeListener.on('swipeup', () => {
+    playEffects(topPlate, 'Clink');
+    setRotate(fire, 90);
+    setRotate(water, -90);
+    setRotate(air, 180);
+    checkCondition.apply(this);
   });
+
+  swipeListener.on('swipeleft', () => {
+    playEffects(leftPlate, 'Click');
+    setRotate(earth, 90);
+    setRotate(water, 180);
+    setRotate(air, -90);
+    checkCondition.apply(this);
+  });
+
+  swipeListener.on('swiperight', () => {
+    playEffects(rightPlate, 'Click');
+    setRotate(fire, -180);
+    setRotate(water, 90);
+    setRotate(earth, -90);
+    checkCondition.apply(this);
+  });
+
+  function checkCondition() {
+    if (getRotate(fire) === 0 && getRotate(water) === 90 &&
+    getRotate(earth) === 180 && getRotate(air) === 270) {
+      this.showCongratulations();
+    }
+  }
+
   // ==== END Напишите свой код для открытия сундука здесь ====
 
-  this.showCongratulations = function () {
-    alert('Поздравляю! Игра пройдена!');
+  this.showCongratulations = () => {
+    document.querySelector('.brief_final').style.display = 'block';
   };
 }
 Box.prototype = Object.create(DoorBase.prototype);
