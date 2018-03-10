@@ -253,20 +253,21 @@ body {
 .door__frame {
     width: 40%;
     position: absolute;
-    height: 67%;
+    height: 100%;
     left: 30%;
     display: flex;
     flex-direction: column;
-    bottom: 0;
+    top: 0;
+    padding-top: 50%;
     border-left: 3px solid darkred;
     border-right: 3px solid darkred;
-    box-shadow: 0px 9px 15px orangered;
+    box-shadow: 0px 0 15px orangered;
 }
 
 .door__shutter-container {
     display: flex;
-    margin-bottom: 45px;
-    margin-top: 50px;
+    margin-bottom: 25px;
+    margin-top: 25px;
     position: relative;
     min-height: 35px;
 }
