@@ -79,10 +79,7 @@ function Door1(number, onUnlock) {
     }
     e.target.releasePointerCapture(e.pointerId);
 
-    // Time Out for last shutter visualisation (get last animation & sound)
-    setTimeout(() => {
-      checkCondition.apply(this);
-    }, 200);
+    checkCondition.apply(this);
   }
 
   function _onRightShutterPointerUp(e) {
@@ -98,9 +95,7 @@ function Door1(number, onUnlock) {
     }
     e.target.releasePointerCapture(e.pointerId);
 
-    setTimeout(() => {
-      checkCondition.apply(this);
-    }, 200);
+    checkCondition.apply(this);
   }
 
   function _onLeftShutterPointerDown(e) {
@@ -165,7 +160,9 @@ function Door1(number, onUnlock) {
     });
 
     if (isOpened) {
-      this.unlock();
+      setTimeout(() => {
+        this.unlock();
+      }, 400);
     }
   }
 }
