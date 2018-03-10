@@ -177,21 +177,15 @@ Door1.prototype.constructor = DoorBase;
  */
 function Door2(number, onUnlock) {
   DoorBase.apply(this, arguments);
-
   // ==== Напишите свой код для открытия третей двери здесь ====
   const diamond = document.querySelector('.diamond__container');
   const { x: secretX, y: secretY } = document.querySelector('.secret-place').getBoundingClientRect();
   diamond.firstElementChild.setAttribute('fill', 'hsla(0, 89%, 59%, 1)');
 
-  function getDistance(x1, y1, x2, y2) {
-    return Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
-  }
-
   function _onDiamondPointerUp(e) {
     const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
-    const distance = getDistance(secretX, secretY, diamondX, diamondY);
+    const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
 
-    // If diamond is close enought to secret
     if (distance < 25) {
       e.target.style.transform = `translate(${secretX}, ${secretY})`;
       sounds.play('Shutter');
@@ -209,7 +203,7 @@ function Door2(number, onUnlock) {
 
   function _onDiamondPointerMove(e) {
     const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
-    const distance = getDistance(secretX, secretY, diamondX, diamondY);
+    const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
     e.target.firstElementChild.setAttribute(
       'fill',
       `hsla(${120 - Math.min(distance, 120)}, 89%, 59%, 1)`,
