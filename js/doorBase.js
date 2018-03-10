@@ -69,9 +69,12 @@ DoorBase.prototype = {
     const clone = template.content.cloneNode(true);
     const labelNode = clone.querySelector('.brief__label');
     labelNode.innerHTML = `Дверь ${pluralMessage(this.number)} открыта!`;
-    clone.querySelector('.brief__template').addEventListener('pointerdown', (e) => {
-      e.target.remove();
-    });
     wrapperNode.appendChild(clone);
+
+    Array.prototype.forEach.call(document.querySelectorAll('.brief__template'), (el) => {
+      el.addEventListener('pointerdown', (e) => {
+        e.target.remove();
+      });
+    });
   },
 };

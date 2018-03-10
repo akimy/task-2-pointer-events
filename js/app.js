@@ -13,6 +13,10 @@ function App(el) {
 
   this.doors = doors;
 
+  for (let i = 0; i < doors.length; i++) {
+    doors[i].enable();
+  }
+
   /**
      * Callback вызывается в коде двери
      * Тут даем возможность открыть следующие двери
