@@ -110,25 +110,21 @@ function Door1(number, onUnlock) {
 
   // We take in mind the boundary conditions && directions
   function _onLeftShutterPointerMove(e) {
-    requestAnimationFrame(() => {
-      if (!e.target.locked) {
-        const diff = this[`start${e.pointerId}`] - e.pageX;
-        if (diff > 0) {
-          e.target.style.transform = `translateX(${-25 - diff}px)`;
-        }
+    if (!e.target.locked) {
+      const diff = this[`start${e.pointerId}`] - e.pageX;
+      if (diff > 0) {
+        e.target.style.transform = `translateX(${-25 - diff}px)`;
       }
-    });
+    }
   }
 
   function _onRightShutterPointerMove(e) {
-    requestAnimationFrame(() => {
-      if (!e.target.locked) {
-        const diff = this[`start${e.pointerId}`] - e.pageX;
-        if (diff < 0) {
-          e.target.style.transform = `translateX(${25 - diff}px)`;
-        }
+    if (!e.target.locked) {
+      const diff = this[`start${e.pointerId}`] - e.pageX;
+      if (diff < 0) {
+        e.target.style.transform = `translateX(${25 - diff}px)`;
       }
-    });
+    }
   }
 
   const leftShutters = [
@@ -206,17 +202,15 @@ function Door2(number, onUnlock) {
   }
 
   function _onDiamondPointerMove(e) {
-    requestAnimationFrame(() => {
-      const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
-      const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
-      e.target.firstElementChild.setAttribute(
-        'fill',
-        `hsla(${120 - Math.min(distance, 120)}, 89%, 59%, 1)`,
-      );
-      const diffX = this[`startX${e.pointerId}`] - e.pageX;
-      const diffY = this[`startY${e.pointerId}`] - e.pageY;
-      e.target.style.transform = `translate(${15 - diffX}px, ${15 - diffY}px)`;
-    });
+    const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
+    const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
+    e.target.firstElementChild.setAttribute(
+      'fill',
+      `hsla(${120 - Math.min(distance, 120)}, 89%, 59%, 1)`,
+    );
+    const diffX = this[`startX${e.pointerId}`] - e.pageX;
+    const diffY = this[`startY${e.pointerId}`] - e.pageY;
+    e.target.style.transform = `translate(${15 - diffX}px, ${15 - diffY}px)`;
   }
 
   function _onDiamondPointerDown(e) {
