@@ -418,6 +418,13 @@ body {
     background: linear-gradient(to top, transparent, #08ec99);
 }
 
+.plate_bottom {
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, #08ec99);
+}
+
 .plate_right {
     right: 0;
     height: 100%;

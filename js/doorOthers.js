@@ -266,9 +266,12 @@ function Box(number, onUnlock) {
     el.style.transform = `rotate(${next}deg)`;
   }
 
-  const topPlate = this.popup.querySelector('.plate_top');
-  const leftPlate = this.popup.querySelector('.plate_left');
-  const rightPlate = this.popup.querySelector('.plate_right');
+  const [
+    leftPlate,
+    rightPlate,
+    topPlate,
+    bottomPlate,
+  ] = this.popup.querySelectorAll('.treashure__plate');
   const [fire, water, earth, air] = this.popup.querySelectorAll('.treashure__column');
 
   const stage = new Hammer.Manager(this.popup);
@@ -298,6 +301,14 @@ function Box(number, onUnlock) {
     checkCondition.apply(this);
   });
 
+  stage.on('swipedown', () => {
+    playEffects(bottomPlate, 'Clink');
+    rotateColumn(fire, -90);
+    rotateColumn(air, 90);
+    rotateColumn(earth, 180);
+    checkCondition.apply(this);
+  });
+
   function checkCondition() {
     if (getAngle(fire) === 0 && getAngle(water) === 90 &&
     getAngle(earth) === 180 && getAngle(air) === 270) {
@@ -310,7 +321,7 @@ function Box(number, onUnlock) {
   this.showCongratulations = () => {
     setTimeout(() => {
       document.querySelector('.finish__description').style.display = 'flex';
-    }, 500);
+    }, 1500);
   };
 }
 Box.prototype = Object.create(DoorBase.prototype);
