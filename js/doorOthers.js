@@ -190,7 +190,7 @@ function Door2(number, onUnlock) {
     const { x: diamondX, y: diamondY } = e.target.getBoundingClientRect();
     const distance = Math.sqrt((secretX - diamondX) ** 2 + (secretY - diamondY) ** 2);
 
-    if (distance < 15) {
+    if (distance < 25) {
       e.target.style.transform = `translate(${secretX}, ${secretY})`;
       sounds.play('Shutter');
       setTimeout(() => {
