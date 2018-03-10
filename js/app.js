@@ -10,11 +10,6 @@ function App(el) {
     new Door2(2, onUnlock),
     new Box(3, onUnlock),
   ];
-  for (let i = 0; i < doors.length; i++) {
-    // убрать после отладки
-    doors[i].enable();
-    // энд
-  }
 
   this.doors = doors;
 
