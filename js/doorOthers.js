@@ -313,7 +313,9 @@ function Box(number, onUnlock) {
   // ==== END Напишите свой код для открытия сундука здесь ====
 
   this.showCongratulations = () => {
-    document.querySelector('.finish__description').style.display = 'flex';
+    setTimeout(() => {
+      document.querySelector('.finish__description').style.display = 'flex';
+    }, 2000);
   };
 }
 Box.prototype = Object.create(DoorBase.prototype);
