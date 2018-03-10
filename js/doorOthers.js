@@ -253,16 +253,6 @@ function Box(number, onUnlock) {
   function rotateColumn(el, diff) {
     const current = getAngle(el);
     let next = current + diff;
-    switch (next) {
-      case -90: next = 270;
-        break;
-      case -180: next = 180;
-        break;
-      case 450: next = 90;
-        break;
-      case 360: next = 0;
-    }
-
     el.style.transform = `rotate(${next}deg)`;
   }
 
@@ -309,9 +299,21 @@ function Box(number, onUnlock) {
     checkCondition.apply(this);
   });
 
+  function getValidPositions(angle) {
+    let positions = [...Array(50).keys()].map((el) => (el * 360 + angle));
+    return positions.concat(positions.map((el) => -el));
+  }
+
+  const firePositions = getValidPositions(0);
+  const waterPositions = getValidPositions(90);
+  const earthPositions = getValidPositions(180);
+  const airPositions = getValidPositions(270);
+
   function checkCondition() {
-    if (getAngle(fire) === 0 && getAngle(water) === 90 &&
-    getAngle(earth) === 180 && getAngle(air) === 270) {
+    if (firePositions.includes(getAngle(fire)) &&
+    waterPositions.includes(getAngle(water)) &&
+    earthPositions.includes(getAngle(earth)) &&
+    airPositions.includes(getAngle(air))) {
       this.showCongratulations();
     }
   }
