@@ -242,7 +242,7 @@ function Box(number, onUnlock) {
     const s = DOMelement.style;
     s.opacity = 1;
     (function fade() {
-      (s.opacity -= 0.05) < 0 ? s.opacity = 0 : setTimeout(fade, 50);
+      (s.opacity -= 0.1) < 0 ? s.opacity = 0 : setTimeout(fade, 40);
     }());
   }
 
@@ -300,7 +300,7 @@ function Box(number, onUnlock) {
   });
 
   function getValidPositions(angle) {
-    let positions = [...Array(50).keys()].map((el) => (el * 360 + angle));
+    let positions = [...Array(60).keys()].map((el) => (el * 360 + angle));
     return positions.concat(positions.map((el) => -el));
   }
 
@@ -323,7 +323,7 @@ function Box(number, onUnlock) {
   this.showCongratulations = () => {
     setTimeout(() => {
       document.querySelector('.finish__description').style.display = 'flex';
-    }, 1500);
+    }, 1300);
   };
 }
 Box.prototype = Object.create(DoorBase.prototype);
