@@ -58,8 +58,9 @@ DoorBase.prototype = {
   showCongratulations() {
     const element = document.querySelector(`.brief__template_${this.number}`);
     element.style.display = 'flex';
-    element.addEventListener('pointerdown', (event) => {
-      event.target.remove();
+    element.addEventListener('click', (event) => {
+      const { target } = event;
+      target.style.display = 'none';
     });
   },
 };
